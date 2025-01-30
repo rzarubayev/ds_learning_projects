@@ -1,0 +1,43 @@
+services:
+  main-app:
+    env_file:
+      - ./.env
+    build: 
+      context: .
+      dockerfile: Dockerfile_ml_service
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    volumes:
+      - ./models:${MODEL_DIR}
+    hostname:   ml_service
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:${PROMETHEUS_PORT}
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    hostname: prometheus 
+
+  grafana:
+    image: grafana/grafana
+    env_file:
+      - ./.env
+    ports:
+      - 3000:${GRAFANA_PORT}
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASS}
+    hostname: grafana
+
+volumes:
+  grafana-storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./grafana
+      o: bind

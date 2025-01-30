@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+LABEL author="Ruslan Zarubayev"
+
+COPY ./ml_service /ml_service
+COPY ./requirements.txt /requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+WORKDIR /ml_service
+VOLUME /models
+
+EXPOSE ${APP_PORT}
+
+CMD uvicorn main:app --host 0.0.0.0 --port ${APP_PORT}

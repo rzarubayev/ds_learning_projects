@@ -1,0 +1,74 @@
+# Признаки для удаления
+drop_cols:
+  - id
+  - studio
+
+# Признаки для обработки выбросов
+out_cols:
+  # Количество комнат
+  - name: rooms
+    min_val: 1
+    threshold: 1.5
+  # Общая площадь
+  - name: total_area
+    by:
+      - rooms
+      - building_type_int
+    min_val: 6
+    threshold: 1.5
+  # Площадь кухни
+  - name: kitchen_area
+    divider: total_area
+    out_val: 0
+    by: 
+      - rooms
+      - building_type_int
+    threshold: 1.5
+  # Жилая площадь 
+  - name: living_area
+    divider: total_area
+    out_val: 0
+    by: 
+      - rooms
+      - building_type_int
+    threshold: 1.5
+  # Высота потолков
+  - name: ceiling_height
+    min_val: 2
+    max_val: 10
+  # Цена квартиры
+  - name: price
+    divider: total_area
+    by: 
+      - rooms
+      - building_type_int
+      - latitude
+      - longitude
+    by_round:
+      latitude: 2
+      longitude: 2
+    min_val: 0
+    threshold: 1.5
+
+# Признаки для заполнения выбросов
+fill_cols: 
+  - name: kitchen_area
+    divider: total_area
+    by:
+      - rooms
+      - building_type_int
+    round: 2
+    func: median
+  - name: living_area
+    divider: total_area
+    by:
+      - rooms
+      - building_type_int
+    round: 2
+    func: median
+
+# Признаки для изменения
+change_col:
+  - name: building_type_int
+    astype: str
+    rename: building_type
