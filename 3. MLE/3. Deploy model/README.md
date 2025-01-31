@@ -39,7 +39,7 @@
 
 Внешний вид дашборда:
 
-![Grafana Dashboard](https://github.com/rzarubayev/mle-project-sprint-3-v001/blob/main/dashboard.jpg?raw=true)
+![Grafana Dashboard](dashboard.jpg)
 
 ## Запуск и остановка сервисов
 
