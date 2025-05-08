@@ -1,0 +1,142 @@
+# Общие признаки и значения
+target_cols: # Целевые признаки
+- ind_ahor_fin_ult1
+- ind_aval_fin_ult1
+- ind_cco_fin_ult1
+- ind_cder_fin_ult1
+- ind_cno_fin_ult1
+- ind_ctju_fin_ult1
+- ind_ctma_fin_ult1
+- ind_ctop_fin_ult1
+- ind_ctpp_fin_ult1
+- ind_deco_fin_ult1
+- ind_deme_fin_ult1
+- ind_dela_fin_ult1
+- ind_ecue_fin_ult1
+- ind_fond_fin_ult1
+- ind_hip_fin_ult1
+- ind_plan_fin_ult1
+- ind_pres_fin_ult1
+- ind_reca_fin_ult1
+- ind_tjcr_fin_ult1
+- ind_valo_fin_ult1
+- ind_viv_fin_ult1
+- ind_nomina_ult1
+- ind_nom_pens_ult1
+- ind_recibo_ult1
+date_col: fecha_dato
+user_col: ncodpers
+country_col: pais_residencia
+residence_col: indresi
+province_col: nomprov
+country_code: ES
+start_date_col: fecha_alta
+seniority_col: antiguedad
+rel_col: indrel
+end_date_col: ult_fec_cli_1t
+age_col: age
+
+# Данные для обработки пропусков
+missing_col: fecha_alta # признак для удаления записей с пропуском
+na1to0_cols: # Перестановка 2-й строки с пропуском на первую
+- indrel_1mes
+- tiprel_1mes
+ffill_cols: # Признаки для заполнения методом ffill по клиенту
+- age
+- sexo
+- canal_entrada
+- segmento
+bfill_cols: # Признаки для заполнения методом bfill по клиенту
+- age
+- sexo
+- canal_entrada
+- segmento
+- indrel_1mes
+val_na_cols: # Признаки для заполнения NaN неизвестные значения (указать известные)
+  tiprel_1mes:
+    - I
+    - A
+    - R
+    - P
+depend_val_cols: # Зависимые значения признаков
+  tiprel_1mes: # Зависимый признак
+    indrel_1mes: # Исходный признак со значениями для замены
+      '1': R
+      '1.0': R
+      '2': R
+      '2.0': R
+      P: R
+      '3': P
+      '3.0': P
+      '4': P
+      '4.0': P
+mode_fill_cols: # Признаки для заполнения пропусков по клиенту модой
+- sexo
+val_fill_cols: # Признаки для заполнения пропусков значениями
+  canal_entrada: unknown
+  segmento: unknown
+  renta: 0
+  nomprov: unknown
+del_val_bfill_cols: # Удаление значений признака с заполнением bfill по клиенту
+  indrel_1mes: P
+
+# Данные для обработки аномалий:
+last_val_cols: # Замена на последние значения
+- sexo
+- indext
+del_other_val_cols: # Удаление неизвестных значений (указать известные)
+  ind_empleado:
+  - A
+  - B
+  - F
+  - N
+  - P
+mod2_cols:
+- indrel_1mes
+fix_residence: true # Исправление признака резиденции (меняется на бинарный)
+fix_seniority: true # Исправление признака стажа
+fix_val_order: # Исправление порядка значений
+  indfall: # Нужно указать правильныйпорядок
+  - N
+  - S
+fix_rel_col: true # Исправление отношений (не меняет на бинарный)
+fix_bin_cols: # Исправление значений на бинарные, указать значение True
+  indrel: 1
+  ind_nuevo: 1
+  indrel_1mes: 1
+  indext: S
+  indfall: S
+  ind_actividad_cliente: 1
+fix_age_vals: true # Исправление значений возраста
+fix_age_outs: true # Исправление выбросов по возрасту
+age_model_age_agg: last # агрегация возраста по клиенту для модели
+age_model_prods_agg: mean # агрегация целевых признаков (продуктов) по клиенту
+age_model_ohe_cols: # агрегация категориальных признаков по клиенту
+  indfall: last
+  sexo: last
+age_model_num_cols: # агрегация числовых признаков по клиенту
+  antiguedad: last
+age_model_std_thres: # пороги стандартного отклонения остатков для определения выбросов
+  lower: 3
+  upper: 5
+  
+# Выходные признаки без учета целевых
+output_cols:
+- fecha_dato
+- ncodpers
+- ind_empleado
+- sexo
+- age
+- ind_nuevo
+- antiguedad
+- indrel
+- indrel_1mes
+- tiprel_1mes
+- indresi
+- indext
+- canal_entrada
+- indfall
+- nomprov
+- ind_actividad_cliente
+- renta
+- segmento

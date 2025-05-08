@@ -46,7 +46,7 @@ async def get_last_events(user_id: int, k: int | None = None):
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     params = {"user_id": user_id}
     if k:
-        params[k] = k
+        params["k"] = k
     async with httpx.AsyncClient(timeout=5.0) as client:
         try:
             resp = await client.post(url, headers=headers, params=params)
@@ -60,16 +60,6 @@ async def get_last_events(user_id: int, k: int | None = None):
         except httpx.RequestError as e:
             logger.error(f"Request Error: {str(e)}")
             return []
-
-# Функция удаления дублирующихся идентификаторов
-def dedup_ids(ids):
-    """
-    Дедублицирует список идентификаторов, оставляя только первое вхождение
-    """
-    seen = set()
-    ids = [id for id in ids if not (id in seen or seen.add(id))]
-
-    return ids
 
 # Доступность сервиса
 @router.get("/")
@@ -110,7 +100,7 @@ async def recommend(user_id: int, k: int = settings.RECS_COUNT):
         recs_blended += recs_online[min_len:]
     
     # Очищаем дубликаты и оставляем k первых
-    recs_blended = dedup_ids(recs_blended)[:k]
+    recs_blended = list(dict.fromkeys(recs_blended))[:k]
 
     return {"recs": recs_blended}
     
@@ -144,13 +134,13 @@ async def recommend_online(
         events = await get_last_events(user_id)
 
     # Получение последних событий и количества рекомендаций
-    events_count = settings.LAST_TRACK_RATIO
+    event_counts = settings.LAST_TRACK_RATIO
     # Сокращение рекомендаций, если событий меньше
-    if len(events) < len(events_count):
-        events_count = events_count[:len(events)]
-        events_count = events_count / np.sum(events_count)
-    events_count = np.round(events_count * k).astype(int).tolist()
-    last_events = dict(zip(events[:len(events_count)], events_count))
+    if len(events) < len(event_counts):
+        event_counts = event_counts[:len(events)]
+        event_counts = event_counts / np.sum(event_counts)
+    event_counts = np.round(event_counts * k).astype(int).tolist()
+    last_events = dict(zip(events[:len(event_counts)], event_counts))
 
     # Получение онлайн рекомендаций
     recs = []
@@ -158,6 +148,6 @@ async def recommend_online(
         sim_item = similar.get(item_id=item_id, k=k, exclude=events)
         logger.info(f"{sim_item}")
         # Исключаем уже полученные рекомендации
-        events = list(set(events + recs))
+        recs = list(set(recs + sim_item))
 
     return {"recs": recs}

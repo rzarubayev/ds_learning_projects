@@ -52,17 +52,17 @@
         <tr>
             <td>8. <a href="1.%20Data%20Science/08.%20Toxic%20comments.ipynb">Токсичность текста</a></td>
             <td>классификация</td>
-            <td>BERT, transformers, CatBoost, LightGBM, Random Forest</td>
+            <td>Transformers (BERT), CatBoost, LightGBM, Random Forest</td>
         </tr>
         <tr>
             <td>9. <a href="1.%20Data%20Science/09.%20Computer%20vision.ipynb">Определение возраста по фото</a></td>
             <td>регрессия</td>
-            <td>CNN, ResNet50</td>
+            <td>CNN (ResNet50)</td>
         </tr>
         <tr>
             <td>10. <a href="1.%20Data%20Science/10.%20Customer%20churn.ipynb">Отток клиентов</a></td>
             <td>классификация</td>
-            <td>Seaborn, Optuna, CatBoost, Random Forest, Ridge, SHAP</td>
+            <td>CatBoost, Random Forest, Ridge, Optuna, Seaborn, SHAP</td>
         </tr>
     </tbody>
 </table>
@@ -70,7 +70,7 @@
 ---
 # SQL
 
-Добавил проект по SQL из программы "Специалист по Data Science" в директорию `2. SQL`.
+Проект по SQL из программы "Специалист по Data Science" в директории `2. SQL`.
 - Описание базы данных и ER-диаграмма в файле '[1.0. SQL project.pdf](2.%20SQL/1.0.%20SQL%20project.pdf)';
 - SQL запросы по заданиям проекта в файле '[1.1. SQL project.md](2.%20SQL/1.1.%20SQL%20project.md)'. 
 
@@ -88,7 +88,7 @@
 ---
 # Инженер машинного обучения
 
-В настоящее время прохожу обучение по новой программе "Инженер машинного обучения" в Яндекс Практикуме, в директорию `3. MLE` выкладываю завершенные проекты по этой программе. 
+Проекты по программе "Инженер машинного обучения" Яндекс Практикума расположены в директории `3. MLE`. 
 
 <table>
     <thead>
@@ -112,12 +112,17 @@
         <tr>
             <td>3. <a href="3.%20MLE/3.%20Deploy%20model">Стоимость квартир (Деплой модели)</a></td>
             <td>регрессия</td>
-            <td>FastAPI, Uvicorn, Docker compose, Prometheus, Grafana</td>
+            <td>FastAPI, Uvicorn, Docker Compose, Prometheus, Grafana</td>
         </tr>
         <tr>
-            <td>4. Рекомендация музыкальных треков</td>
+            <td>4. <a href="3.%20MLE/4.%20Recsys">Рекомендация музыкальных треков</ a></td>
             <td>рекомендательные системы</td>
-            <td>(В процессе)</td>
+            <td>ALS (Implicit), TSVD (sklearn), CatBoost, FastAPI</td>
+        </tr>
+        <tr>
+            <td>5. <a href="3.%20MLE/5.%20Final">Рекомендация банковских продуктов</ a></td>
+            <td>рекомендательные системы</td>
+            <td>ALS, CatBoost (Classifier / Multi-label), sklearn (NearestNeighbors, RandomForest), FastAPI, Docker Compose, Prometheus, Grafana</td>
         </tr>
     </tbody>
 </table>

@@ -34,6 +34,8 @@ class Settings(BaseSettings):
     # URL сервиса Events store
     EVENTS_STORE_URL: str #= "http://localhost:8080/events_store"
 
+    EVENTS_STORE_MAX_LEN: int #= 100
+
     class Config:
         env_file = ".env"
         # Разрешаем наличие других параметров

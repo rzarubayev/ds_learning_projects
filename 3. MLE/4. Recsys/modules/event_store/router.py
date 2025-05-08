@@ -21,7 +21,9 @@ STORAGE_OPTIONS = {
 router = APIRouter(prefix="/events_store", tags=["Events"])
 
 # Загрузка последних событий пользователей
-event_store = EventStore()
+event_store = EventStore(
+    max_len=settings.EVENTS_STORE_MAX_LEN)
+
 event_store.load(
     S3_PATH + settings.LAST_EVENTS_FILE, 
     engine="pyarrow", storage_options=STORAGE_OPTIONS)

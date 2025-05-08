@@ -1,0 +1,12 @@
+Learning rate set to 0.035801
+0:	learn: 0.6490117	total: 366ms	remaining: 30m 31s
+500:	learn: 0.2051840	total: 1m 22s	remaining: 12m 23s
+1000:	learn: 0.1955141	total: 2m 47s	remaining: 11m 11s
+1500:	learn: 0.1906073	total: 4m 19s	remaining: 10m 4s
+2000:	learn: 0.1873980	total: 5m 54s	remaining: 8m 51s
+2500:	learn: 0.1849169	total: 7m 34s	remaining: 7m 34s
+3000:	learn: 0.1829904	total: 9m 18s	remaining: 6m 12s
+3500:	learn: 0.1812549	total: 11m 3s	remaining: 4m 44s
+4000:	learn: 0.1798366	total: 12m 50s	remaining: 3m 12s
+4500:	learn: 0.1784550	total: 14m 39s	remaining: 1m 37s
+4999:	learn: 0.1771637	total: 16m 29s	remaining: 0us

@@ -1,0 +1,19 @@
+Learning rate set to 0.156523
+0:	learn: 0.3298779	test: 0.3285399	best: 0.3285399 (0)	total: 19.4s	remaining: 5h 22m 14s
+20:	learn: 0.0602004	test: 0.0569142	best: 0.0569142 (20)	total: 7m 1s	remaining: 5h 27m 20s
+40:	learn: 0.0575488	test: 0.0547251	best: 0.0547251 (40)	total: 13m 45s	remaining: 5h 21m 53s
+60:	learn: 0.0566038	test: 0.0542198	best: 0.0542198 (60)	total: 27m 9s	remaining: 6h 58m 1s
+80:	learn: 0.0558942	test: 0.0539773	best: 0.0539773 (80)	total: 37m 18s	remaining: 7h 3m 22s
+100:	learn: 0.0553987	test: 0.0539466	best: 0.0539391 (91)	total: 43m 51s	remaining: 6h 30m 20s
+120:	learn: 0.0549898	test: 0.0540015	best: 0.0539302 (113)	total: 55m 42s	remaining: 6h 44m 41s
+140:	learn: 0.0547221	test: 0.0539115	best: 0.0539115 (140)	total: 1h 17m 11s	remaining: 7h 50m 13s
+160:	learn: 0.0545217	test: 0.0539062	best: 0.0538938 (152)	total: 1h 40m 11s	remaining: 8h 42m 4s
+180:	learn: 0.0543642	test: 0.0538939	best: 0.0538851 (177)	total: 1h 52m 59s	remaining: 8h 31m 15s
+200:	learn: 0.0542414	test: 0.0538349	best: 0.0538349 (200)	total: 2h 46s	remaining: 8h 4s
+220:	learn: 0.0541090	test: 0.0538697	best: 0.0538349 (200)	total: 2h 8m 45s	remaining: 7h 33m 51s
+Stopped by overfitting detector  (30 iterations wait)
+
+bestTest = 0.0538348775
+bestIteration = 200
+
+Shrink model to first 201 iterations.
